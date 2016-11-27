@@ -1,5 +1,8 @@
 {
-  "name"    : "ElectronTry",
-  "version" : "0.1.0",
-  "main"    : "main.js"
+  "name": "ElectronTry",
+  "version": "0.1.0",
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^3.1.1"
+  }
 }
