@@ -1,17 +1,5 @@
-var express = require('express');
-var app = express();
 var mysql = require('mysql');
 
-// prepare server
-//app.use('/api', api); // redirect API calls
-app.use('/', express.static(__dirname)); // redirect root
-app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
-app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
-app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
-
-// 그럼 지금 __dirname: ElectronTry/app 인가? => 위치이동한 현재는 Electron/ 이상태여야한다 그럼
-
-// Add the credentials to access my database
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -19,27 +7,43 @@ var connection = mysql.createConnection({
     database : 'ElectronTestDB'
 });
 
-// connect to mysql
 connection.connect(function(err) {
-    if(err){
+    if(err) {
         console.log(err.code);
         console.log(err.fatal);
     }
 });
 
-// Perform a query
-$query = 'SELECT * FROM ElectronTestTable';
-
-connection.query($query, function(err, rows, fields) {
-    if(err){
+connection.query('SELECT * FROM ElectronTestTable', function(err, results) {
+    if(err) {
         console.log("An error ocurred performing the query.");
         console.log(err);
         return;
     }
-    console.log("Query succesfully executed", rows[0].id);
+    //document.getElementsByTagName("h1")[0].innerHTML = rows[0].id;
+    console.log("SELECT QUERY SUCCEEDED");
 });
 
-// Close the connection
-connection.end(function(){
-    // The connection has been closed
-});
+function updateTheSeat() {
+    var theTag = event.srcElement;
+    var seatID = theTag.dataset.seatid;
+    var occupied = theTag.dataset.occupied;
+    console.log(theTag);
+    console.log(seatID);
+    console.log(occupied);
+
+    $query = 'UPDATE ElectronTestTable SET occupied = ' + connection.escape(occupied == 0 ? 1 : 0) + ' WHERE id = ' + connection.escape(seatID);
+    connection.query($query, function(err, results) {
+        if(err) {
+            console.log("An error ocurred performing the query.");
+            console.log(err);
+            return;
+        }
+        console.log("UPDATE QUERY SUCCEDED");
+        theTag.setAttribute("data-occupied", occupied == 0 ? 1 : 0);
+    });
+}
+
+// connection.end(function(){
+//     // The connection has been closed
+// });
