@@ -41,9 +41,11 @@ connection.query('SELECT * FROM ElectronTestTable', function(err, results) {
             document.getElementsByClassName('row')[Math.floor(i/8)].appendChild(halfColDIV);
         }
         var button = document.createElement('button');
-        button.setAttribute('class', 'btn btn-default');
         button.setAttribute('type', 'button');
-        // button.innerHTML = results[i];
+        button.setAttribute('class', 'btn btn-default');
+        button.setAttribute('data-seatid', results[i].id);
+        button.setAttribute('data-occupied', results[i].occupied);
+        button.addEventListener('click', updateTheSeat);
         button.innerHTML = "좌석 " + (i+1);
         var whichGrid = Math.floor(i / 4) % 2;
         document.getElementsByClassName('col-xs-6')[Math.floor(i/4)].appendChild(button);
