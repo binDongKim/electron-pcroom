@@ -42,7 +42,7 @@ connection.query('SELECT * FROM ElectronTestTable', function(err, results) {
         }
         var button = document.createElement('button');
         button.setAttribute('type', 'button');
-        button.setAttribute('class', results[i].occupied == 0 ? 'btn btn-default' : 'btn btn-primary');
+        button.setAttribute('class', results[i].occupied == 0 ? 'btn btn-default btn-lg' : 'btn btn-primary btn-lg');
         button.setAttribute('data-seatid', results[i].id);
         button.setAttribute('data-occupied', results[i].occupied);
         button.addEventListener('click', updateTheSeat);
@@ -67,7 +67,7 @@ function updateTheSeat() {
         }
         console.log("UPDATE QUERY SUCCEDED");
         theTag.setAttribute('data-occupied', occupied == 0 ? 1 : 0);
-        theTag.setAttribute('class', theTag.getAttribute('data-occupied') == 0 ? 'btn btn-default' : 'btn btn-primary');
+        theTag.setAttribute('class', theTag.getAttribute('data-occupied') == 0 ? 'btn btn-default btn-lg' : 'btn btn-primary btn-lg');
     });
 }
 
