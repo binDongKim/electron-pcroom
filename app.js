@@ -11,7 +11,7 @@ req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 req.onreadystatechange = function() {
     if(req.readyState == XMLHttpRequest.DONE && req.status == 200) {
         var data = JSON.parse(req.response);
-        console.log(data);
+
         // 받아온 data에서 사용할 property는 empty, id(seatid)
 
         // 받아온 data(Object) array로 div button 그려주자
