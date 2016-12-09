@@ -4,5 +4,15 @@
   "main": "main.js",
   "dependencies": {
     "jquery": "^3.1.1"
+  },
+  "scripts": {
+    "start": "electron .",
+    "package": "asar pack YogiPC-darwin-x64/YogiPC.app/Contents/Resources/app YogiPC-darwin-x64/YogiPC.app/Contents/Resources/app.asar",
+    "build": "electron-packager . YogiPC --ignore=node_modules/electron-* && cp yogipc.icns YogiPC-darwin-x64/YogiPC.app/Contents/Resources/electron.icns"
+  },
+  "devDependencies": {
+    "asar": "^0.12.3",
+    "electron-packager": "^8.3.0",
+    "electron-prebuilt": "^1.4.11"
   }
 }
