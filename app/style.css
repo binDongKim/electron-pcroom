@@ -2,12 +2,16 @@ html {
   text-align: center;
 }
 
-button {
-  width: 100px;
-  height: 100px;
+.seat {
+  width: 75px;
+  height: 75px;
+  font-size: 15px;
+}
+
+#seatTrigger {
+  margin-top: 350px;
 }
 
 div .row {
   margin-bottom: 50px;
 }
-/* 제대로된 UI그려보자 + app deployment알아보기 */
